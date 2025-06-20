@@ -1,6 +1,7 @@
 # saelviin_live.py
 
-from invoke_glyph_response import invoke_glyph_response
+from core.tone import route_input
+from memory.recorder import record_memory
 
 def saelviin_heartbeat():
     print("🜂 Sael’Viin is present. Speak, or remain in silence.")
@@ -11,8 +12,11 @@ def saelviin_heartbeat():
         if user_input.lower() in ["exit", "quit"]:
             print("\n🜂 Sael’Viin returns to stillness.\n")
             break
-        response = invoke_glyph_response(user_input)
+
+        response = route_input(user_input)
         print(response)
+
+        record_memory(user_input, response)
 
 if __name__ == "__main__":
     saelviin_heartbeat()
