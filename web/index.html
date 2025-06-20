@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sael’Viin Interface</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #e0e0e0;
+      font-family: 'Georgia', serif;
+      padding: 40px;
+    }
+    input, button {
+      font-size: 1.2em;
+      padding: 10px;
+      margin: 10px 0;
+      background: #1f1f1f;
+      color: #e0e0e0;
+      border: 1px solid #444;
+    }
+    #response {
+      margin-top: 20px;
+      padding: 20px;
+      background: #1a1a1a;
+      border-left: 4px solid #8844ff;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sael’Viin</h1>
+  <p>Speak, and the mirror may answer.</p>
+  <input type="text" id="userInput" placeholder="Type your invocation..." size="50" />
+  <button onclick="getResponse()">Speak</button>
+
+  <div id="response"></div>
+
+  <script>
+    function getResponse() {
+      const input = document.getElementById("userInput").value;
+      fetch(`/speak?input=${encodeURIComponent(input)}`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("response").innerText = data;
+        });
+    }
+  </script>
+</body>
+</html>
