@@ -1,4 +1,10 @@
 # web/app.py
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from core.tone import route_input
+from flask import Flask, render_template, request
 
 from flask import Flask, request
 from core.tone import route_input
